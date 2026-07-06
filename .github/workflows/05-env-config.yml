@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  env-demo:
+  env-config:
     name: Environment Variable
     runs-on: ubuntu-latest
 
