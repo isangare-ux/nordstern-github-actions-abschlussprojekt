@@ -20,7 +20,7 @@ jobs:
         run: chmod +x scripts/*.sh
 
       - name: Skript starten
-        run: bash scripts/05-env-config.sh
+        run: bash scripts/05_package_release.sh
         env:
           RELEASE_VERSION: "1.0.0"
 
