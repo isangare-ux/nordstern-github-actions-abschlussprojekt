@@ -1,0 +1,33 @@
+run-name: "02-validation - ${{ github.actor }}"
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/02-validation.yml"
+      - "scripts/02_validate_project.sh"
+
+  pull_request:
+    branches: 
+      - main
+    paths:
+      - ".github/workflows/02-validation.yml"
+      - "scripts/02_validate_project.sh"
+
+  workflow_dispatch:
+    
+jobs:
+  info:
+    name: Info-Pipeline
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Repository herunterladen
+        uses: actions/checkout@v4
+
+      - name: Skript ausführbar machen
+        run: chmod +x scripts/*.sh
+
+      - name: Skript 02_validate_project starten
+        run: bash scripts/002_validate_projecth.sh

@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - main
+    paths:
+      - ".github/workflows/01-info.yml"
+      - "scripts/01_show_info.sh"
   workflow_dispatch:
     
 jobs:
