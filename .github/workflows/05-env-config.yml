@@ -28,4 +28,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: report
-          path: output/config-summary.txt
+          path: output/nordstern-release
