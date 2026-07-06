@@ -56,7 +56,7 @@ jobs:
   report:
     name: Report erstellen
     runs-on: ubuntu-latest
-    needs: validate
+    needs: count
 
     steps:
       - name: Repository herunterladen
@@ -78,7 +78,7 @@ jobs:
   package:
     name: Package
     runs-on: ubuntu-latest
-    needs: count
+    needs: report
 
     steps:
       - name: Repository herunterladen
