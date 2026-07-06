@@ -30,4 +30,4 @@ jobs:
         run: chmod +x scripts/*.sh
 
       - name: Skript 02_validate_project starten
-        run: bash scripts/output/02_validate_projecth.sh
+        run: bash scripts/02_validate_project.sh
