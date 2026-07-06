@@ -9,7 +9,7 @@ on:
       - "scripts/03_count_tickets.sh"
 
   pull_request:
-    branches: 
+    branches:
       - main
     paths:
       - ".github/workflows/03-report-artifact.yml"
