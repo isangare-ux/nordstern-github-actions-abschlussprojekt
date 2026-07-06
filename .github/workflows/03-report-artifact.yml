@@ -1,0 +1,39 @@
+run-name: "03-report-artifact - ${{ github.actor }}"
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/02-validation.yml"
+      - "scripts/03_count_tickets.sh"
+
+  pull_request:
+    branches: 
+      - main
+    paths:
+      - ".github/workflows/02-validation.yml"
+      - "scripts/03_count_tickets.sh"
+
+  workflow_dispatch:
+    
+jobs:
+  info:
+    name: Info-Pipeline
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Repository herunterladen
+        uses: actions/checkout@v4
+
+      - name: Skript ausführbar machen
+        run: chmod +x scripts/*.sh
+
+      - name: Skript 03_count_tickets starten
+        run: bash scripts/03_count_tickets.sh 
+
+      - name: Artefakt hochladen
+        uses: actions/upload-artifact@v4
+        with:
+          name: report-artifact
+          path: output/report.txt 
