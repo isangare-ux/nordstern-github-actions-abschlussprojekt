@@ -1,0 +1,9 @@
+id,priority,status,title
+1001,HIGH,OPEN,Kundenzugang funktioniert nicht
+1002,LOW,CLOSED,Schreibfehler im Portal
+1003,MEDIUM,OPEN,Export dauert zu lange
+1004,HIGH,OPEN,API Antwortet nicht
+1005,LOW,OPEN,Frage zur Bedienung
+1006,MEDIUM,CLOSED,Dashboard zeigt alte Daten
+1007,HIGH,CLOSED,Login Fehler nach Update
+1008,MEDIUM,OPEN,Report fehlt im System

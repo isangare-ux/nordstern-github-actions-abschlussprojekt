@@ -1,0 +1,22 @@
+run-name: "01-info - ${{ github.actor }}"
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+    
+jobs:
+  info:
+    name: Info-Pipeline
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Repository herunterladen
+        uses: actions/checkout@v4
+
+      - name: Skript ausführbar machen
+        run: chmod +x scripts/*.sh
+
+      - name: Skript 01_show_info starten
+        run: bash scripts/01_show_info.sh

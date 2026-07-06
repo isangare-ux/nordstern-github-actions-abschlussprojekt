@@ -1,0 +1,7 @@
+Nordstern Konfigurationsübersicht
+
+Kunde: nicht gesetzt
+Zielumgebung: nicht gesetzt
+Release Version: nicht gesetzt
+
+Diese Werte wurden über Environment Variables an das Bash Skript übergeben.
