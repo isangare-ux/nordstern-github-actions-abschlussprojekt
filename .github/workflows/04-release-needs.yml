@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - ".github/workflows/04-release-needs.yml"
+      - "scripts/02_validate_project.sh"
       - "scripts/04_create_report.sh"
 
   pull_request:
@@ -13,6 +14,7 @@ on:
       - main
     paths:
       - ".github/workflows/04-release-needs.yml"
+      - "scripts/02_validate_project.sh"
       - "scripts/04_create_report.sh"
 
   workflow_dispatch:
@@ -32,7 +34,7 @@ jobs:
       - name: Skript 02_validate_project starten
         run: bash scripts/02_validate_project.sh
   
-  cout:
+  count:
     name: Count-Tickets
     runs-on: ubuntu-latest
     needs: validate
@@ -49,11 +51,34 @@ jobs:
         with:
           name: report
           path: output/report.md
+
+  
+  report:
+    name: Report erstellen
+    runs-on: ubuntu-latest
+    needs: validate
+
+    steps:
+      - name: Repository herunterladen
+        uses: actions/checkout@v4
+
+      - name: Skripte ausführbar machen
+        run: chmod +x scripts/*.sh
+
+      - name: Report erstellen
+        run: bash scripts/04_create_report.sh
+
+      - name: Report als Artefakt hochladen
+        uses: actions/upload-artifact@v4
+        with:
+          name: report
+          path: output/report.txt
+          if-no-files-found: error
   
   package:
     name: Package
     runs-on: ubuntu-latest
-    needs: cout
+    needs: count
 
     steps:
       - name: Repository herunterladen
