@@ -1,0 +1,70 @@
+run-name: "04-release-needs - ${{ github.actor }}"
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/04-release-needs.yml"
+      - "scripts/04_create_report.sh"
+
+  pull_request:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/04-release-needs.yml"
+      - "scripts/04_create_report.sh"
+
+  workflow_dispatch:
+
+jobs:
+  validate:
+    name: Validation
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Repository herunterladen
+        uses: actions/checkout@v4
+
+      - name: Skript ausführbar machen
+        run: chmod +x scripts/*.sh
+
+      - name: Skript 02_validate_project starten
+        run: bash scripts/02_validate_project.sh
+  
+  cout:
+    name: Count-Tickets
+    runs-on: ubuntu-latest
+    needs: validate
+
+    steps: 
+      - name: Repository herunterladen
+        uses: actions/checkout@v4
+
+      - name: Skript ausführbar machen
+        run: chmod +x scripts/*.sh
+
+      - name: Report als Artefakt hochladen
+        uses: actions/upload-artifact@v4
+        with:
+          name: report
+          path: output/report.md
+  
+  package:
+    name: Package
+    runs-on: ubuntu-latest
+    needs: cout
+
+    steps:
+      - name: Repository herunterladen
+        uses: actions/checkout@v4
+
+      - name: Report-Artefakt herunterladen
+        uses: actions/download-artifact@v4
+        with: 
+          name: report
+          path: output/report.md
+
+
+
+
