@@ -1,0 +1,31 @@
+run-name: "05-env-config - ${{ github.actor }}"
+
+on:
+  workflow_dispatch:
+
+jobs:
+  env-demo:
+    name: Environment Variable
+    runs-on: ubuntu-latest
+
+    env:
+          COURSE_NAME: "GitHub Actions Bash Projekt"
+          DEPLOY_ENV: "test"
+
+    steps:
+      - name: Repository herunterladen
+        uses: actions/checkout@v4
+
+      - name: Skript ausführbar machen
+        run: chmod +x scripts/*.sh
+
+      - name: Skript starten
+        run: bash scripts/05-env-config.sh
+        env:
+          RELEASE_VERSION: "1.0.0"
+
+      - name: Report als Artefakt hochladen
+        uses: actions/upload-artifact@v4
+        with:
+          name: report
+          path: output/config-summary.txt
